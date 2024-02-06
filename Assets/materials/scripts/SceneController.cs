@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    private const int degreeToNextSection = 360 / 8;
+    private const int degreeToNextSection = 360 / 10;
     private int randOfDegreeToNextSection;
     private float randOfTimeRotation;
     [SerializeField] private Tweener tweener;
@@ -16,6 +16,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] private GameObject drumOne;
     [SerializeField] private GameObject drumTwo;
     [SerializeField] private GameObject drumThree;
+    [SerializeField] private GameObject drumFour;
     private Sequence seq;
     levelArm _lv;
     SceneController _sc;
@@ -41,8 +42,9 @@ public class SceneController : MonoBehaviour
 
         randOfDegreeToNextSection = Random.Range(1000, 5000);
         drumThree.transform.DORotate(new Vector3(randOfDegreeToNextSection * degreeToNextSection, 0, 0), randOfTimeRotation, RotateMode.WorldAxisAdd).SetEase(Ease.InOutQuart).SetDelay(0.4f);
-        
-        Debug.Log("HIIII!");
+
+        randOfDegreeToNextSection = Random.Range(1000, 5000);
+        drumFour.transform.DORotate(new Vector3(randOfDegreeToNextSection * degreeToNextSection, 0, 0), randOfTimeRotation, RotateMode.WorldAxisAdd).SetEase(Ease.InOutQuart).SetDelay(0.6f);
 
     }
 }
