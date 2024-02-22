@@ -1,36 +1,30 @@
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Experimental.AI;
-using UnityEngine.SceneManagement;
+
 
 public class SceneController : MonoBehaviour
 {
+    [SerializeField] private List<GameObject> drumList;
+
+    private Sequence seq;
     private const int degreeToNextSection = 360 / 10;
     private int randOfDegreeToNextSection;
     private float randOfTimeRotation;
-    [SerializeField] private Tweener tweener;
-    [SerializeField] private GameObject obj;
-    [SerializeField] private GameObject drumOne;
-    [SerializeField] private GameObject drumTwo;
-    [SerializeField] private GameObject drumThree;
-    [SerializeField] private GameObject drumFour;
-    private Sequence seq;
-    levelArm _lv;
-    SceneController _sc;
+
+
     
-    
-    public void MethodOfRotationLevelArm()
+    private void RollDrums(int randomTimeForRotation, int[] degreeToRotate)
     {
-        seq = DOTween.Sequence();
-        seq.Append(obj.transform.DORotate(new Vector3(50, 0, 0), 0.8f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear));
-        seq.Append(obj.transform.DORotate(new Vector3(-50, 0, 0), 0.2f, RotateMode.WorldAxisAdd).SetEase(Ease.Linear));
-        seq.SetEase(Ease.Linear);
-        seq.AppendCallback(RollDrums);
+        float delay = 0;
+        for(int i = 0; i < drumList.Count; i++)
+        {
+            drumList[i].transform.DORotate(new Vector3(degreeToRotate[i] * degreeToNextSection, 0, 0), randomTimeForRotation, RotateMode.WorldAxisAdd).SetEase(Ease.InOutQuart).SetDelay(delay);
+            delay += 0.2f;
+        }
     }
-    private void RollDrums()
+
+    /*private void RollDrums()
     {
         randOfTimeRotation = Random.Range(3f, 10f);
 
@@ -45,6 +39,5 @@ public class SceneController : MonoBehaviour
 
         randOfDegreeToNextSection = Random.Range(1000, 5000);
         drumFour.transform.DORotate(new Vector3(randOfDegreeToNextSection * degreeToNextSection, 0, 0), randOfTimeRotation, RotateMode.WorldAxisAdd).SetEase(Ease.InOutQuart).SetDelay(0.6f);
-
-    }
+    }*/
 }
