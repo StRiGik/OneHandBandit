@@ -6,14 +6,14 @@ public class OneHandBandit : MonoBehaviour
 {
     [SerializeField] private GameObject _levelArm;
     [SerializeField] private GameObject _drumSet;
-    [SerializeField]private int _requiredNumberOfReels;
     [SerializeField]private List<Drums> _drumList;
 
 
-    private void Start()
+    public void OneHandBanditCreated(int countOfDrums)
     {
+        _drumList = new List<Drums>();
         float distanceToNextDrum = -0.8f;
-        for(int i = 0; i < _requiredNumberOfReels; i++)
+        for(int i = 0; i < countOfDrums; i++)
         {
             var drum = Instantiate(_drumSet, new Vector3(distanceToNextDrum, 6, 0), Quaternion.Euler(0, -90, 0)).GetComponent<Drums>();
             distanceToNextDrum += 0.6f;
@@ -34,6 +34,15 @@ public class OneHandBandit : MonoBehaviour
             _drumList[i].SpinTheReel(angleOfRotation, rotationTime, delay);
             delay += 0.2f;
         }
+    }
+    public void DrumsDestroing()
+    {
+        for (int i = 0; i < _drumList.Count; ++i)
+        {
+            Destroy(_drumList[i].gameObject);
+
+        }
+        _drumList.Clear();
     }
 
 }
