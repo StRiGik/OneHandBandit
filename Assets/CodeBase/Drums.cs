@@ -1,20 +1,16 @@
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEditor.Build.Content;
+
 
 public class Drums : MonoBehaviour
 {
-    private int _angleOfRotation;
-    private int _edgeRotationAngel = 360/10;
-    private float _delay;
-    private int _randOfTimeRotation;
 
 
-    public void SpinTheReel()
+    private int _rotatioAngleToNextplane = 360 / 10;
+
+    public void SpinTheReel(int angleOfRotation, int rotationTime, float delay)
     {
-        this.transform.DORotate(new Vector3(_angleOfRotation * _edgeRotationAngel, 0, 0), _randOfTimeRotation,RotateMode.WorldAxisAdd)
-            .SetEase(Ease.InOutQuart)
-            .SetDelay(_delay);    
+        Debug.Log("начинаю вращать отдельный барабан!");
+        this.transform.DORotate(new Vector3(angleOfRotation * _rotatioAngleToNextplane, 0, 0), rotationTime, RotateMode.WorldAxisAdd).SetEase(Ease.InOutQuart).SetDelay(delay);   
     }
 }
