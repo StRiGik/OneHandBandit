@@ -8,7 +8,7 @@ public class OneHandBandit : MonoBehaviour
     [SerializeField] private GameObject _drumSet;
     [SerializeField]private List<Drums> _drumList;
 
-
+    enum states { aaa, sss, zzz }
     public void OneHandBanditCreated(int countOfDrums)
     {
         _drumList = new List<Drums>();
@@ -35,7 +35,7 @@ public class OneHandBandit : MonoBehaviour
             delay += 0.2f;
         }
     }
-    public void DrumsDestroing()
+    public void CloseGameAction()
     {
         for (int i = 0; i < _drumList.Count; ++i)
         {
@@ -46,3 +46,4 @@ public class OneHandBandit : MonoBehaviour
     }
 
 }
+

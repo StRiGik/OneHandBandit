@@ -22,11 +22,19 @@ public class MenuController : MonoBehaviour
 
     public void CloseGame()
     {
-        _gameControl.DrumsDestroing();
+        _gameControl.CloseGameAction();
         _canvasMenu.SetActive(true);
         _oneHandBandit.SetActive(false);
         _backGround.SetActive(false);
 
     }
 
+    public void PlusDrum()
+    {
+
+    }
+    public void MinusDrum()
+    {
+
+    }
 }
